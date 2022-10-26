@@ -29,15 +29,6 @@ app.use("/api/user", UserRoutes);
 app.use("/api/chat", ChatRoutes);
 app.use("/api/message", MessageRoutes);
 
-// ====================  Deployment ========================= //
-if (process.env.NODE_ENV === "production") {
-  // Establishes the path to our frontend (most important)
-  app.use(express.static(path.join(DIRNAME, "/frontend/build")));
-  app.get("*", (req, res) =>
-    res.sendFile(path.join(DIRNAME, "/frontend/build/index.html"))
-  );
-}
-// ====================  Deployment ========================= //
 
 // Error middlewares
 app.all("*", notFoundHandler);

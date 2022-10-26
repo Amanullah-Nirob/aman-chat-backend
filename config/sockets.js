@@ -4,7 +4,8 @@ import {
   deleteNotifOnMsgDelete,
   checkNotification,
 } from "../controllers/UserController.js";
-
+import dotenv from "dotenv";
+dotenv.config();
 import { callRequestHandler } from "../socketControllers/callRequestHandler.js";
 import { callResponseHandler } from "../socketControllers/callResponseHandler.js";
 
@@ -139,7 +140,7 @@ const configureSocketEvents = (server) => {
   // Sockets setup
   const io = new Server(server, {
     pingTimeout: 120000,
-    cors: { origin: "http://localhost:3000/" },
+    cors: { origin: process.env.FRONT_END_BASE_URL },
   });
 
   setServerSocketInstance(io)
