@@ -42,7 +42,7 @@ const createOrRetrieveChat = asyncHandler(async (req, res) => {
     });
 
     const populatedChat = await ChatModel.findById(createdChat._id).populate({
-      path: "users",
+      path: "users", 
       model: "User",
       select: "-password -notifications",
     });

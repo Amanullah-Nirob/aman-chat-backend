@@ -7,6 +7,7 @@ import {
 import dotenv from "dotenv";
 dotenv.config();
 import { callRequestHandler } from "../socketControllers/callRequestHandler.js";
+import { detectVolumeHandler } from "../socketControllers/detectVolumeHandler.js";
 import { callResponseHandler } from "../socketControllers/callResponseHandler.js";
 
 import { addNewConnectedUser, setServerSocketInstance } from "../socketControllers/connectedUsersForCallChats.js";
@@ -135,6 +136,10 @@ const configureDisconnectEvents = (socket) => {
 
 };
   
+
+
+
+
 // config socket primary
 const configureSocketEvents = (server) => {
   // Sockets setup
@@ -186,6 +191,11 @@ const configureSocketEvents = (server) => {
     socket.on("call-request", (data) => {
       callRequestHandler(socket, data);
     })
+
+    socket.on("detectVolume", (data) => {
+      detectVolumeHandler(socket, data);
+    })
+
 
     socket.on("call-response", (data) => {
       callResponseHandler(socket, data);

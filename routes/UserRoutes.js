@@ -14,7 +14,7 @@ import {
 } from "../controllers/UserController.js";
 
 const router = Router();
-
+ 
 /*   Base route: /api/user   */
 router.post("/register", upload.single("profilePic"), registerUser);
 router.post("/login", authenticateUser);

@@ -1,8 +1,8 @@
 import { getActiveConnections, getServerSocketInstance } from "./connectedUsersForCallChats.js";
 
 
-const callRequestHandler = (socket, data) => {
-    const { receiverUserId, callerName,callerPhoto,audioOnly, signal,senderId } = data;
+const detectVolumeHandler = (socket, data) => {
+    const { type, volume,senderId,receiverUserId,callerName } = data;
     const callerUserId = senderId;
 
     // active connections of the receiver user
@@ -12,11 +12,11 @@ const callRequestHandler = (socket, data) => {
     const io = getServerSocketInstance();
 
     activeConnections.forEach((socketId) => {
-        io.to(socketId).emit("call-request", { callerName,callerPhoto,callerUserId, audioOnly, signal });
+        io.to(socketId).emit("detectVolume", {type, volume,senderId,receiverUserId,name:callerName});
     }
     );
 }
 
 export {
-    callRequestHandler
+    detectVolumeHandler
 } 

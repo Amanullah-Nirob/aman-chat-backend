@@ -355,7 +355,7 @@ const addNotification = async (notificationId, userId) => {
     userData = await UserModel.findByIdAndUpdate(
       userId,
       { $push: { notifications: notificationId } },
-      { new: true }
+      { new: true } 
     )
       .select("notifications") 
       .populate({
@@ -401,7 +401,7 @@ const deleteNotifOnMsgDelete = async (notificationId, userId) => {
       { new: true }
     );
     if (!userData) {
-      throw new Error("User not found while deleting notification");
+      throw new Error("User not found while deleting notification"); 
     }
     return userData;
   } catch (error) {
@@ -513,6 +513,4 @@ export {
   deleteNotifOnMsgDelete,
   deleteNotifications,
   checkNotification,
-
-
 };
